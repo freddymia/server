@@ -28,7 +28,7 @@ data class Producto(
         val descripcion: String,
 
         @Column
-        val precio: BigDecimal,
+        var precio: BigDecimal,
 
         @Column
         val tipo: TipoProducto,

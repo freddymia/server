@@ -2,6 +2,7 @@ package com.ecommerce.server.controller
 
 import com.ecommerce.server.dto.ItemDTO
 import com.ecommerce.server.enums.EstadoCompra
+import com.ecommerce.server.model.Carro
 import com.ecommerce.server.model.Item
 import com.ecommerce.server.model.Producto
 import com.ecommerce.server.model.id.ItemId
@@ -38,6 +39,13 @@ class CarroController {
     @GetMapping("/{id}/productos")
     fun getById(@PathVariable id: UUID): List<Producto>? {
         return productoService.findByCarroId(id)
+    }
+
+    @PostMapping("/save")
+    fun save(@RequestBody carro: Carro): ResponseEntity<Carro> {
+        val obj = carroService.get(carro.id)
+                ?: return ResponseEntity<Carro>(carroService.save(carro), HttpStatus.OK)
+        return ResponseEntity<Carro>(obj, HttpStatus.NOT_FOUND)
     }
 
     @PostMapping("/add-producto")

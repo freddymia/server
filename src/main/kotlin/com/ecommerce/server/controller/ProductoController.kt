@@ -49,7 +49,7 @@ class ProductoController {
     fun update(@PathVariable id: UUID, @RequestBody producto: Producto): ResponseEntity<Producto> {
         val obj = productoService.get(id)
         if (obj != null) {
-            val obj = productoService.save(producto)
+            val obj = productoService.saveProductoByTipoProducto(producto)
             return ResponseEntity<Producto>(obj, HttpStatus.OK)
         }
         return ResponseEntity<Producto>(HttpStatus.NOT_FOUND)

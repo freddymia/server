@@ -6,4 +6,6 @@ import java.util.*
 
 interface ProductoService : GenericService<Producto, UUID> {
     fun findByCarroId(carroId: UUID?): MutableList<Producto>?
+
+    fun saveProductoByTipoProducto(producto: Producto): Producto
 }
